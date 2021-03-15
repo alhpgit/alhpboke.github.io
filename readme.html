@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | Hexo</title>
+  <title>Readme | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="Box island翻版  基于webgl 3d休闲游戏技术迭代预研开发 技术选型:Tool:GUI:   fairygui [官网] Scene:cocos creator3d[官网] Assets:3d-model: gltf glb GUI:png jpg 资源来源:3d-model 12345https:&#x2F;&#x2F;www.cgtrader.com&#x2F;low-poly-">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Readme">
+<meta property="og:url" content="http://example.com/readme.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Box island翻版  基于webgl 3d休闲游戏技术迭代预研开发 技术选型:Tool:GUI:   fairygui [官网] Scene:cocos creator3d[官网] Assets:3d-model: gltf glb GUI:png jpg 资源来源:3d-model 12345https:&#x2F;&#x2F;www.cgtrader.com&#x2F;low-poly-">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-23T00:35:58.000Z">
+<meta property="article:modified_time" content="2021-02-08T02:52:27.195Z">
 <meta property="article:author" content="alhp">
 <meta name="twitter:card" content="summary">
   
@@ -150,103 +154,167 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Readme
+    </h1>
+  
+
+        
+        <a href="/readme.html" class="archive-article-date">
+  	<time datetime="2020-07-23T00:35:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Box-island翻版"><a href="#Box-island翻版" class="headerlink" title="Box island翻版"></a>Box island翻版</h3><hr>
+<p> 基于webgl 3d休闲游戏技术迭代预研开发</p>
+<h4 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型:"></a>技术选型:</h4><h5 id="Tool"><a href="#Tool" class="headerlink" title="Tool:"></a>Tool:</h5><p><em>GUI</em>:   fairygui <a target="_blank" rel="noopener" href="https://fairygui.com/">[官网]</a></p>
+<p><em>Scene</em>:cocos creator3d<a target="_blank" rel="noopener" href="https://www.cocos.com/products#CocosCreator3D">[官网]</a></p>
+<h5 id="Assets"><a href="#Assets" class="headerlink" title="Assets:"></a>Assets:</h5><p><em>3d-model</em>: gltf glb</p>
+<p><em>GUI</em>:png jpg</p>
+<h5 id="资源来源"><a href="#资源来源" class="headerlink" title="资源来源:"></a>资源来源:</h5><p><strong>3d-model</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.cgtrader.com&#x2F;low-poly-3d-models</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;sketchfab.com&#x2F;store&#x2F;3d-models?max_face_count&#x3D;10000&amp;ref&#x3D;header</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;www.turbosquid.com&#x2F;Search&#x2F;3D-Models</span><br></pre></td></tr></table></figure>
+<p><strong>GUI</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">美术同学</span><br></pre></td></tr></table></figure>
+
+<h4 id="工程结构"><a href="#工程结构" class="headerlink" title="工程结构:"></a>工程结构:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root -|-client_proj   (cocos creator 工程)</span><br><span class="line">      |</span><br><span class="line">      |</span><br><span class="line">      |-fairygui_proj (fairygui 工程)</span><br><span class="line">      |</span><br><span class="line">      |</span><br><span class="line">      |-res_original  (原始资源)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="版本规划"><a href="#版本规划" class="headerlink" title="版本规划:"></a>版本规划:</h4><p>feature v0.1</p>
+<ul>
+<li>工程开发流程搭建，git 打包 提交测试 代码检测工具闭环。</li>
+<li>基础GUI工程创建，导出支持进入游戏</li>
+<li>游戏场景模型导入搭建测试性能瓶颈</li>
+<li>Avatar模型导入测试性能瓶颈</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/15/index/" class="archive-article-date">
-  	<time datetime="2021-03-15T09:40:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/15/index/">create private blog</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/readme.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/15/my-first-blog/" class="archive-article-date">
-  	<time datetime="2021-03-15T09:11:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/15/my-first-blog/">my first blog</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/15/hello-world/" class="archive-article-date">
-  	<time datetime="2021-03-15T08:12:12.081Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/15/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -270,7 +338,7 @@
 		mathjax: false,
 		isHome: false,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
