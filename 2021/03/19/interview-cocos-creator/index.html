@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/3 | Hexo</title>
+  <title>interview-cocos-creator | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2021/03/index.html">
+  <meta name="description" content="语言lua{    面向对象相关    元表 function class(classname, ...)     local cls &#x3D; &amp;#123;__cname &#x3D; classname&amp;#125;      local supers &#x3D; &amp;#123;...&amp;#125;     for _, super in ipairs(supers) do         local superType">
+<meta property="og:type" content="article">
+<meta property="og:title" content="interview-cocos-creator">
+<meta property="og:url" content="http://example.com/2021/03/19/interview-cocos-creator/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="语言lua{    面向对象相关    元表 function class(classname, ...)     local cls &#x3D; &amp;#123;__cname &#x3D; classname&amp;#125;      local supers &#x3D; &amp;#123;...&amp;#125;     for _, super in ipairs(supers) do         local superType">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-19T06:34:00.000Z">
+<meta property="article:modified_time" content="2021-03-19T09:20:33.217Z">
 <meta property="article:author" content="alhp">
 <meta name="twitter:card" content="summary">
   
@@ -150,295 +154,485 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-interview-cocos-creator" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/23/js-study-cross-domain/" class="archive-article-date">
-  	<time datetime="2021-03-23T07:42:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/23/js-study-cross-domain/">js-study-cross-domain</a>
+    <h1 class="article-title" itemprop="name">
+      interview-cocos-creator
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/23/js-study-this/" class="archive-article-date">
-  	<time datetime="2021-03-23T07:22:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/23/js-study-this/">js-study-this</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/23/js-study-closure/" class="archive-article-date">
-  	<time datetime="2021-03-23T06:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/23/js-study-closure/">js-study-closure</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/19/interview-cocos-creator/" class="archive-article-date">
+        
+        <a href="/2021/03/19/interview-cocos-creator/" class="archive-article-date">
   	<time datetime="2021-03-19T06:34:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/19/interview-cocos-creator/">interview-cocos-creator</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>语言<br>lua{<br>    面向对象相关<br>    元表</p>
+<pre><code>function class(classname, ...)
+    local cls = &#123;__cname = classname&#125;
 
-        <div class="article-info info-on-right">
-          
-          
+    local supers = &#123;...&#125;
+    for _, super in ipairs(supers) do
+        local superType = type(super)
+        assert(superType == &quot;nil&quot; or superType == &quot;table&quot; or superType == &quot;function&quot;,
+            string.format(&quot;class() - create class \&quot;%s\&quot; with invalid super class type \&quot;%s\&quot;&quot;,
+                classname, superType))
 
+        if superType == &quot;function&quot; then
+            assert(cls.__create == nil,
+                string.format(&quot;class() - create class \&quot;%s\&quot; with more than one creating function&quot;,
+                    classname));
+            -- if super is function, set it to __create
+            cls.__create = super
+        elseif superType == &quot;table&quot; then
+            if super[&quot;.isclass&quot;] then
+                -- super is native class
+                assert(cls.__create == nil,
+                    string.format(&quot;class() - create class \&quot;%s\&quot; with more than one creating function or native class&quot;,
+                        classname));
+                cls.__create = function() return super:create() end
+            else
+                -- super is pure lua class
+                cls.__supers = cls.__supers or &#123;&#125;
+                cls.__supers[#cls.__supers + 1] = super
+                if not cls.super then
+                    -- set first super pure lua class as class.super
+                    cls.super = super
+                end
+            end
+        else
+            error(string.format(&quot;class() - create class \&quot;%s\&quot; with invalid super type&quot;,
+                        classname), 0)
+        end
+    end
+
+    cls.__index = cls
+    if not cls.__supers or #cls.__supers == 1 then
+        setmetatable(cls, &#123;__index = cls.super&#125;)
+    else
+        setmetatable(cls, &#123;__index = function(_, key)
+            local supers = cls.__supers
+            for i = 1, #supers do
+                local super = supers[i]
+                if super[key] then return super[key] end
+            end
+        end&#125;)
+    end
+
+    if not cls.ctor then
+        -- add default constructor
+        cls.ctor = function() end
+    end
+    cls.new = function(...)
+        local instance
+        if cls.__create then
+            instance = cls.__create(...)
+        else
+            instance = &#123;&#125;
+        end
+        setmetatableindex(instance, cls)
+        instance.class = cls
+        instance:ctor(...)
+        return instance
+    end
+    cls.create = function(_, ...)
+        return cls.new(...)
+    end
+
+    return cls
+end
+
+lua 与 c++ 调用：
+    Lua和C/C++语言交互的主要方法是一个无处不在的虚拟栈,栈的特点是先进后出.
+    在Lua中，Lua堆栈就是一个struct
+    堆栈索引的方式可是是正数也可以是负数
+    正数索引1永远表示栈底，负数索引-1永远表示栈顶
+
+C++ 与java
+    通过jni callStaticMethod
+
+C++ 与oc 
+    oc 是c的超集 c++ 与oc可以混编
+</code></pre>
+<p>}</p>
+<p>js<br>    {<br>        js面向对象的实现{<br>            常用继承方式实现 6种<br>            最优继承方式的实现<br>        }<br>        proto –  原型链 继承</p>
+<pre><code>    函数的this指针   bind（）call（）aply（）
+
+    一：原型继承
+
+    function Parent()&#123;
+        this.x = 100;
+    &#125;;
+    Parent.prototype.getX = function getX()&#123;
+        return this.x;
+    &#125;;
+    function Child()&#123;
+        this.y = 200;
+    &#125;;
+    Child.prototype = new Parent;//实现继承
+    Child.prototype.constructor = Child//为了保证Child原型的完整性，手动添加上constructor 
+    Child.prototype.getY = function getY()&#123;
+        return this.y;
+    &#125;;
+    let c1 = new Child;
+
+
+    特点：
+    让子类的原型等于父类的事例 child.prototype = new parent()
+    父类中的私有的和共有的属性和方法，都变成了子类实例的共有属性和方法
+    弊病：
+    child.proto.xxx = xxx;
+    子类别没有真正的拷贝一份父类的属性和方法，只是在proto设置父类的查找方法
+    修改子类的原型方法会使其他子类实例受到影响，父类实例没有影响
+    
+    child.prototype.proto.xxx = xxx 
+    这样修改的父类的原型，这样会影响 其他子类实例和父类实例
+
+    二：call
+
+
+    在子类的构造函数中把父类当作普通函数执行（没有父类实例，父类原型上的相关内容和子类没有任何关系）
+
+    function Parent()&#123;
+        this.x = 100;
+    &#125;;
+    Parent.prototype.getX = function getX()&#123;
+        return this.x;
+    &#125;;
+    function Child()&#123;
+        Parent.call(this);
+        this.y = 200;
+    &#125;;
+    Child.prototype.getY = function getY()&#123;
+        return this.y;
+    &#125;;
+    let c1 = new Child;
+
+
+    特点：
+    相当于给子类拷贝了一份父类的私有属性的实例
+    缺点：
+    只能拷贝父类的私有属性，不能继承父类共有的属性
+
+    三：组合继承
+
+
+    function Parent()&#123;
+        this.x = 100;
+    &#125;;
+    Parent.prototype.getX = function getX()&#123;
+        return this.x;
+    &#125;;
+    function Child()&#123;
+        Parent.call(this);
+        this.y = 200;
+    &#125;;
+    Child.protopyte = new parent()
+
+    缺点：
+    会调用俩次父类的构造函数
+    会把继承者的属性加到继承者的原型上
+
+    四：寄生组合式继承
+    call + 另类原型继承
+    理想的继承方式： 父类的私有属性子类也可以有一份私有的，父类共有的变为子类共有的
+    核心点：Child.prototype.proto === Parent.prototype
+    把子类的原型链指向父类的原型从而达到继承父类公有办法的目的，但是IE浏览器不支持修改__proto__
+    所以可以利用：Child.prototype= Object.create(Parent.prototype)；
+    为了保证Child原型的完整性，手动加上Child.prototype.constructor = Child
+
+
+    function Parent()&#123;
+        this.x = 100;
+    &#125;;
+    Parent.prototype.getX = function getX()&#123;
+        return this.x;
+    &#125;;
+    function Child()&#123;
+        Parent.call(this);
+        this.y = 200;
+    &#125;;
+    //Child.prototype.__proto__ === Parent.prototype
+    Child.prototype= Object.create(Parent.prototype);
+    Child.prototype.constructor = Child;
+    Child.prototype.getY = function getY()&#123;
+        return this.y;
+    &#125;;
+    let c1 = new Child;
+
+    Es6中的继承：
+    子类extends父类（类似于组合继承）
+    继承后子类的constructor 内需要 调用父类的 super（）初始化父类
+    //ES6中类和继承
+    class Parent&#123;
+        constructor ()&#123;
+            this.x = 100;
+        &#125;;
+        //Parent.prototype.getX = function...
+        getX()&#123;
+            return this.x;
+        &#125;
+    &#125;
+
+    class Child  extends Parent&#123;
+        constructor ()&#123;
+            super();//类似于之前的call继承，super（100,200）：相当于把Parent中的constructor执行，传递了100和200
+            //不加报错：Must call super constructor in derived class before accessing &#39;this&#39; or returning from derived constructor
+        at new Child 
+            this.y = 200;
+        &#125;;
+        //Parent.prototype.getY = function...
+        getY()&#123;
+            return this.y;
+        &#125;
+    &#125;;
+    new Child();//    Uncaught TypeError: Class constructor Child cannot be invoked without &#39;new&#39;
+// ES6中创建的类就是类，不能被当做普通函数执行
+
+&#125;
+</code></pre>
+<p>ts<br>    {<br>        常用语法<br>        ES6的新特性<br>        let 与 const {<br>            let 作用于当前定义的代码块，只在当前代码块有效<br>            const 声明的为只读常量 ，常量值不能改变<br>            var 作用于全局范围 ，还存在变量提升的问题</p>
+<pre><code>        let 在当前代码块只能声明一次
+        var 可以多次声明 覆盖
+
+        for (var i = 0; i &lt; 10; i++) &#123;
+          setTimeout(function()&#123;
+            console.log(i);
+          &#125;)
+        &#125;
+        // 输出十个 10
+        for (let j = 0; j &lt; 10; j++) &#123;
+          setTimeout(function()&#123;
+            console.log(j);
+          &#125;)
+        &#125;
+        // 输出 0123456789
+    &#125;
+    解构赋值&#123;
+        解构赋值是对赋值运算符的一种扩展
+        是一种针对数组或对象进行的模式匹配，然后对其中的对象进行赋值
+        在代码书写上简洁易读，语意清晰明了，方便了复杂对象中的数据字段获取
+
+        数组-解构
+        let [a,b,c] = [1,2,3]
+        可嵌套
+        let [a,[b],c] = [1,[2],3]
+        可忽略
+        let [a,,c] = [1,2,3]
+        不完全解构
+        let [a= 1,b] = []  : 结果。a= 1, b = undefine
+        剩于运算符
+        let [a,...b] = [1,2,3,4,5] :  a = 1, b = [2,3,4,5]
+        字符串等
+        在数组的解构中，解构目标若为可遍历对象，皆可进行解构赋值 （可遍历对象--定义 对象实现 iterator接口的数据）
+        解构默认值
+        let [a = 2] = [undefined]; // a = 2
+        当解构模式有匹配结果，且匹配结果是 undefined 时，会触发默认值作为返回结果。
+        let [a = 3, b = a] = [];     // a = 3, b = 3
+        let [a = 3, b = a] = [1];    // a = 1, b = 1
+        let [a = 3, b = a] = [1, 2]; // a = 1, b = 2
+        a 与 b 匹配结果为 undefined ，触发默认值：a = 3; b = a =3
+        a 正常解构赋值，匹配结果：a = 1，b 匹配结果 undefined ，触发默认值：b = a =1
+        a 与 b 正常解构赋值，匹配结果：a = 1，b = 2
+
+        对象模型的解构（Object）
+        基本
+        let &#123; foo, bar &#125; = &#123; foo: &#39;aaa&#39;, bar: &#39;bbb&#39; &#125;;
+        // foo = &#39;aaa&#39;
+        // bar = &#39;bbb&#39;
+         
+        let &#123; baz : foo &#125; = &#123; baz : &#39;ddd&#39; &#125;;
+        // foo = &#39;ddd&#39;
+        可嵌套可忽略
+        let obj = &#123;p: [&#39;hello&#39;, &#123;y: &#39;world&#39;&#125;] &#125;;
+        let &#123;p: [x, &#123; y &#125;] &#125; = obj;
+        // x = &#39;hello&#39;
+        // y = &#39;world&#39;
+        let obj = &#123;p: [&#39;hello&#39;, &#123;y: &#39;world&#39;&#125;] &#125;;
+        let &#123;p: [x, &#123;  &#125;] &#125; = obj;
+        // x = &#39;hello&#39;
+        不完全解构
+        let obj = &#123;p: [&#123;y: &#39;world&#39;&#125;] &#125;;
+        let &#123;p: [&#123; y &#125;, x ] &#125; = obj;
+        // x = undefined
+        // y = &#39;world&#39;
+        剩余运算符
+        let &#123;a, b, ...rest&#125; = &#123;a: 10, b: 20, c: 30, d: 40&#125;;
+        // a = 10
+        // b = 20
+        // rest = &#123;c: 30, d: 40&#125;
+        解构默认值
+        let &#123;a = 10, b = 5&#125; = &#123;a: 3&#125;;
+        // a = 3; b = 5;
+        let &#123;a: aa = 10, b: bb = 5&#125; = &#123;a: 3&#125;;
+        // aa = 3; bb = 5;
+                &#125;
+
+        Symbol
+
+        Map set
+        Maps 和 Objects 的区别
+        一个 Object 的键只能是字符串或者 Symbols，但一个 Map 的键可以是任意值。
+        Map 中的键值是有序的（FIFO 原则），而添加到对象中的键则不是。
+        Map 的键值对个数可以从 size 属性获取，而 Object 的键值对个数只能手动计算。
+        Object 都有自己的原型，原型链上的键名有可能和你自己在对象上的设置的键名产生冲突。
+
+        proxy 与 reflect
+        proxy 可以对目标对象的读取，函数调用进行拦截 ，然后进行操作处理，他不直接操作目标对象，而是通过对象的代理对象进行操作，在进行操作时可以添加一些额外操作。
+        reflect 可以获取目标对象的行为
+
+
+
+
+    promise
+    async 
+    await
+&#125;
+</code></pre>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/19/interview-cocos-creator/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/19/opengl-1/" class="archive-article-date">
-  	<time datetime="2021-03-19T03:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/03/23/js-study-closure/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          js-study-closure
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/19/opengl-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">opengl-1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/19/opengl-1/">opengl-1</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/18/2d-collision-detection/" class="archive-article-date">
-  	<time datetime="2021-03-18T06:22:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/18/2d-collision-detection/">2d-collision-detection</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/17/xiangliangxuexi/" class="archive-article-date">
-  	<time datetime="2021-03-17T06:54:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/17/xiangliangxuexi/">向量点乘和差乘及应用</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/17/creator-plugin/" class="archive-article-date">
-  	<time datetime="2021-03-17T06:50:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/17/creator-plugin/">creator 插件开发常用api列表-备忘录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/15/A-star/" class="archive-article-date">
-  	<time datetime="2021-03-15T09:54:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/15/A-star/">A star</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/15/index/" class="archive-article-date">
-  	<time datetime="2021-03-15T09:40:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/15/index/">create private blog</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/03/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/03/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +656,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

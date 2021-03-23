@@ -152,6 +152,800 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-study-cross-domain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/23/js-study-cross-domain/">js-study-cross-domain</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/23/js-study-cross-domain/" class="archive-article-date">
+  	<time datetime="2021-03-23T07:42:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当前端页面与后台运行在不同服务器时，就必定会产生跨域问题</p>
+<p>产生原因：<br>浏览器的同源策略限制，它由网景公司提出的著名安全策略；所谓的同源是指 协议+ 域名+ 端口三者相同，</p>
+<p>而现实开发中客户端和服务器都是分开开发的在不同ip和端口</p>
+<p>方法一：ajax的jsonp</p>
+<p>方法二：使用jquery的jsonp插件</p>
+<p>使用proxyTable </p>
+<p>proxyTable是vue-cli提供的解决vue脚手架开发环境下跨域问题的策略，这可以说是一种服务端通信解决跨域的方法。proxyTable本质上是在底层启动了一个服务，它使用http-proxy-middleware中间件来进行代理转发，其他如react可自行查阅。<br>具体做法跟网上说的一样，在config/index.js下配置</p>
+<p>使用nginx进行代理转发<br>该方法的原理和proxyTable类似，主要适用于传统html+css+js且ajax请求接口较少的情况，实现方法很简单，使用nginx部署工程并给接口配置转发代理，然后启动nginx服务，主要代码如下，具体可以自行百度：</p>
+<p>使用浏览器配置跨域</p>
+<p>这是浏览器解决跨域的一种方法，一般适用于html+css+js的传统PC前端开发。以谷歌为例，可以<br>1.新建快捷方式，在目标那里的路径后面跟上如下参数<br>“C:\Program Files (x86)\Google\Chrome\Application\chrome.exe” –disable-web-security</p>
+<p>使用Cors进行跨域资源共享</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/23/js-study-cross-domain/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js-study-this" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/23/js-study-this/">js-study-this</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/23/js-study-this/" class="archive-article-date">
+  	<time datetime="2021-03-23T07:22:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js this 的使用</p>
+<p>一般this都指向函数的调用者</p>
+<p>一、问题的由来</p>
+<p>学懂 JavaScript 语言，一个标志就是理解下面两种写法，可能有不一样的结果。</p>
+<p>var obj = {  </p>
+<p>    foo:  function () {}</p>
+<p>};</p>
+<p>var foo = obj.foo;</p>
+<p>// 写法一</p>
+<p>obj.foo()</p>
+<p>// 写法二</p>
+<p>foo()</p>
+<p>上面代码中，虽然obj.foo和foo指向同一个函数，但是执行结果可能不一样。请看下面的例子。</p>
+<p>var obj = {  </p>
+<p>    foo:  function () { </p>
+<p>        console.log(this.bar)</p>
+<p>    },  </p>
+<p>    bar:  1</p>
+<p>};</p>
+<p>var foo = obj.foo;</p>
+<p>var bar = 2;</p>
+<p>obj.foo() // 1</p>
+<p>foo() // 2</p>
+<p>这种差异的原因，就在于函数体内部使用了this关键字。很多教科书会告诉你，this指的是函数运行时所在的环境。对于obj.foo()来说，foo运行在obj环境，所以this指向obj；对于foo()来说，foo运行在全局环境，所以this指向全局环境。所以，两者的运行结果不一样。</p>
+<p>这种解释没错，但是教科书往往不告诉你，为什么会这样？也就是说，函数的运行环境到底是怎么决定的？举例来说，为什么obj.foo()就是在obj环境执行，而一旦var foo = obj.foo，foo()就变成在全局环境执行？</p>
+<p>本文就来解释 JavaScript 这样处理的原理。理解了这一点，你就会彻底理解this的作用。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/23/js-study-this/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js-study-closure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/23/js-study-closure/">js-study-closure</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/23/js-study-closure/" class="archive-article-date">
+  	<time datetime="2021-03-23T06:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js 闭包相关总结</p>
+<p>闭包：是一个拥有许多变量和绑定了这些变量环境的表达式（通常是一个函数），这些变量也是这个表达式的一部分。</p>
+<p>function a() {<br> var i = 0;<br> function b() { alert(++i); }<br> return b;<br>}<br>var c = a();<br>c();</p>
+<p>这段代码有两个特点：<br>1、函数b嵌套在函数a内部；</p>
+<p>2、函数a返回函数b。</p>
+<p>引用关系如图：</p>
+<p>这样在执行完var c=a()后，变量c实际上是指向了函数b，再执行c()后就会弹出一个窗口显示i的值(第一次为1)。这段代码其实就创建了一个闭包，为什么？因为函数a外的变量c引用了函数a内的函数b，就是说：</p>
+<p>当函数a的内部函数b被函数a外的一个变量引用的时候，就创建了一个闭包。</p>
+<p>让我们说的更透彻一些。所谓“闭包”，就是在构造函数体内定义另外的函数作为目标对象的方法函数，而这个对象的方法函数反过来引用外层函数体中的临时变量。这使得只要目标 对象在生存期内始终能保持其方法，就能间接保持原构造函数体当时用到的临时变量值。尽管最开始的构造函数调用已经结束，临时变量的名称也都消失了，但在目 标对象的方法内却始终能引用到该变量的值，而且该值只能通这种方法来访问。即使再次调用相同的构造函数，但只会生成新对象和方法，新的临时变量只是对应新 的值，和上次那次调用的是各自独立的。</p>
+<p>闭包的作用：<br>简而言之，闭包的作用就是在a执行完并返回后，闭包使得Javascript的垃圾回收机制GC不会收回a所占用的资源，因为a的内部函数b的执行需要依赖a中的变量。这是对闭包作用的非常直白的描述，不专业也不严谨，但大概意思就是这样，理解闭包需要循序渐进的过程。</p>
+<p>在上面的例子中，由于闭包的存在使得函数a返回后，a中的i始终存在，这样每次执行c()，i都是自加1后alert出i的值。</p>
+<p>那 么我们来想象另一种情况，如果a返回的不是函数b，情况就完全不同了。因为a执行完后，b没有被返回给a的外界，只是被a所引用，而此时a也只会被b引 用，因此函数a和b互相引用但又不被外界打扰(被外界引用)，函数a和b就会被GC回收。(关于Javascript的垃圾回收机制将在后面详细介绍)</p>
+<p>小结，本段中提到了两个重要的词语：函数的定义与执行。文中提到函数的作用域是在定义函数时候就已经确定，而不是在执行的时候确定（参看步骤1和3）。用一段代码来说明这个问题：<br>function f(x) {<br>  var g = function () { return x; }<br>  return g;<br>}<br>var h = f(1);<br>alert(h());</p>
+<p>这段代码中变量h指向了f中的那个匿名函数(由g返回)。</p>
+<p>假设函数h的作用域是在执行alert(h())确定的，那么此时h的作用域链是：h的活动对象-&gt;alert的活动对象-&gt;window对象。</p>
+<p>假设函数h的作用域是在定义时确定的，就是说h指向的那个匿名函数在定义的时候就已经确定了作用域。那么在执行的时候，h的作用域链为：h的活动对象-&gt;f的活动对象-&gt;window对象。</p>
+<p>如果第一种假设成立，那输出值就是undefined；如果第二种假设成立，输出值则为1。<br>运行结果证明了第2个假设是正确的，说明函数的作用域确实是在定义这个函数的时候就已经确定了。</p>
+<p>闭包的应用场景：<br>保护函数内部变量的安全，私有变量</p>
+<p>javaScript  闭包的形成原理是基于函数变量作用域链的规则 和垃圾回收机制的应用计数规则<br>优点：<br>1, 隐藏变量，避免变量被污染<br>2，可以读取函数内部的变量<br>缺点：<br>导致变量不会被垃圾回收机制回收，造成内存泄漏<br>不恰当的使用闭包可能会造成内存泄漏问题</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/23/js-study-closure/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-interview-cocos-creator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/19/interview-cocos-creator/">interview-cocos-creator</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/19/interview-cocos-creator/" class="archive-article-date">
+  	<time datetime="2021-03-19T06:34:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>语言<br>lua{<br>    面向对象相关<br>    元表</p>
+<pre><code>function class(classname, ...)
+    local cls = &#123;__cname = classname&#125;
+
+    local supers = &#123;...&#125;
+    for _, super in ipairs(supers) do
+        local superType = type(super)
+        assert(superType == &quot;nil&quot; or superType == &quot;table&quot; or superType == &quot;function&quot;,
+            string.format(&quot;class() - create class \&quot;%s\&quot; with invalid super class type \&quot;%s\&quot;&quot;,
+                classname, superType))
+
+        if superType == &quot;function&quot; then
+            assert(cls.__create == nil,
+                string.format(&quot;class() - create class \&quot;%s\&quot; with more than one creating function&quot;,
+                    classname));
+            -- if super is function, set it to __create
+            cls.__create = super
+        elseif superType == &quot;table&quot; then
+            if super[&quot;.isclass&quot;] then
+                -- super is native class
+                assert(cls.__create == nil,
+                    string.format(&quot;class() - create class \&quot;%s\&quot; with more than one creating function or native class&quot;,
+                        classname));
+                cls.__create = function() return super:create() end
+            else
+                -- super is pure lua class
+                cls.__supers = cls.__supers or &#123;&#125;
+                cls.__supers[#cls.__supers + 1] = super
+                if not cls.super then
+                    -- set first super pure lua class as class.super
+                    cls.super = super
+                end
+            end
+        else
+            error(string.format(&quot;class() - create class \&quot;%s\&quot; with invalid super type&quot;,
+                        classname), 0)
+        end
+    end
+
+    cls.__index = cls
+    if not cls.__supers or #cls.__supers == 1 then
+        setmetatable(cls, &#123;__index = cls.super&#125;)
+    else
+        setmetatable(cls, &#123;__index = function(_, key)
+            local supers = cls.__supers
+            for i = 1, #supers do
+                local super = supers[i]
+                if super[key] then return super[key] end
+            end
+        end&#125;)
+    end
+
+    if not cls.ctor then
+        -- add default constructor
+        cls.ctor = function() end
+    end
+    cls.new = function(...)
+        local instance
+        if cls.__create then
+            instance = cls.__create(...)
+        else
+            instance = &#123;&#125;
+        end
+        setmetatableindex(instance, cls)
+        instance.class = cls
+        instance:ctor(...)
+        return instance
+    end
+    cls.create = function(_, ...)
+        return cls.new(...)
+    end
+
+    return cls
+end
+
+lua 与 c++ 调用：
+    Lua和C/C++语言交互的主要方法是一个无处不在的虚拟栈,栈的特点是先进后出.
+    在Lua中，Lua堆栈就是一个struct
+    堆栈索引的方式可是是正数也可以是负数
+    正数索引1永远表示栈底，负数索引-1永远表示栈顶
+
+C++ 与java
+    通过jni callStaticMethod
+
+C++ 与oc 
+    oc 是c的超集 c++ 与oc可以混编
+</code></pre>
+<p>}</p>
+<p>js<br>    {<br>        js面向对象的实现{<br>            常用继承方式实现 6种<br>            最优继承方式的实现<br>        }<br>        proto –  原型链 继承</p>
+<pre><code>    函数的this指针   bind（）call（）aply（）
+
+    一：原型继承
+
+    function Parent()&#123;
+        this.x = 100;
+    &#125;;
+    Parent.prototype.getX = function getX()&#123;
+        return this.x;
+    &#125;;
+    function Child()&#123;
+        this.y = 200;
+    &#125;;
+    Child.prototype = new Parent;//实现继承
+    Child.prototype.constructor = Child//为了保证Child原型的完整性，手动添加上constructor 
+    Child.prototype.getY = function getY()&#123;
+        return this.y;
+    &#125;;
+    let c1 = new Child;
+
+
+    特点：
+    让子类的原型等于父类的事例 child.prototype = new parent()
+    父类中的私有的和共有的属性和方法，都变成了子类实例的共有属性和方法
+    弊病：
+    child.proto.xxx = xxx;
+    子类别没有真正的拷贝一份父类的属性和方法，只是在proto设置父类的查找方法
+    修改子类的原型方法会使其他子类实例受到影响，父类实例没有影响
+    
+    child.prototype.proto.xxx = xxx 
+    这样修改的父类的原型，这样会影响 其他子类实例和父类实例
+
+    二：call
+
+
+    在子类的构造函数中把父类当作普通函数执行（没有父类实例，父类原型上的相关内容和子类没有任何关系）
+
+    function Parent()&#123;
+        this.x = 100;
+    &#125;;
+    Parent.prototype.getX = function getX()&#123;
+        return this.x;
+    &#125;;
+    function Child()&#123;
+        Parent.call(this);
+        this.y = 200;
+    &#125;;
+    Child.prototype.getY = function getY()&#123;
+        return this.y;
+    &#125;;
+    let c1 = new Child;
+
+
+    特点：
+    相当于给子类拷贝了一份父类的私有属性的实例
+    缺点：
+    只能拷贝父类的私有属性，不能继承父类共有的属性
+
+    三：组合继承
+
+
+    function Parent()&#123;
+        this.x = 100;
+    &#125;;
+    Parent.prototype.getX = function getX()&#123;
+        return this.x;
+    &#125;;
+    function Child()&#123;
+        Parent.call(this);
+        this.y = 200;
+    &#125;;
+    Child.protopyte = new parent()
+
+    缺点：
+    会调用俩次父类的构造函数
+    会把继承者的属性加到继承者的原型上
+
+    四：寄生组合式继承
+    call + 另类原型继承
+    理想的继承方式： 父类的私有属性子类也可以有一份私有的，父类共有的变为子类共有的
+    核心点：Child.prototype.proto === Parent.prototype
+    把子类的原型链指向父类的原型从而达到继承父类公有办法的目的，但是IE浏览器不支持修改__proto__
+    所以可以利用：Child.prototype= Object.create(Parent.prototype)；
+    为了保证Child原型的完整性，手动加上Child.prototype.constructor = Child
+
+
+    function Parent()&#123;
+        this.x = 100;
+    &#125;;
+    Parent.prototype.getX = function getX()&#123;
+        return this.x;
+    &#125;;
+    function Child()&#123;
+        Parent.call(this);
+        this.y = 200;
+    &#125;;
+    //Child.prototype.__proto__ === Parent.prototype
+    Child.prototype= Object.create(Parent.prototype);
+    Child.prototype.constructor = Child;
+    Child.prototype.getY = function getY()&#123;
+        return this.y;
+    &#125;;
+    let c1 = new Child;
+
+    Es6中的继承：
+    子类extends父类（类似于组合继承）
+    继承后子类的constructor 内需要 调用父类的 super（）初始化父类
+    //ES6中类和继承
+    class Parent&#123;
+        constructor ()&#123;
+            this.x = 100;
+        &#125;;
+        //Parent.prototype.getX = function...
+        getX()&#123;
+            return this.x;
+        &#125;
+    &#125;
+
+    class Child  extends Parent&#123;
+        constructor ()&#123;
+            super();//类似于之前的call继承，super（100,200）：相当于把Parent中的constructor执行，传递了100和200
+            //不加报错：Must call super constructor in derived class before accessing &#39;this&#39; or returning from derived constructor
+        at new Child 
+            this.y = 200;
+        &#125;;
+        //Parent.prototype.getY = function...
+        getY()&#123;
+            return this.y;
+        &#125;
+    &#125;;
+    new Child();//    Uncaught TypeError: Class constructor Child cannot be invoked without &#39;new&#39;
+// ES6中创建的类就是类，不能被当做普通函数执行
+
+&#125;
+</code></pre>
+<p>ts<br>    {<br>        常用语法<br>        ES6的新特性<br>        let 与 const {<br>            let 作用于当前定义的代码块，只在当前代码块有效<br>            const 声明的为只读常量 ，常量值不能改变<br>            var 作用于全局范围 ，还存在变量提升的问题</p>
+<pre><code>        let 在当前代码块只能声明一次
+        var 可以多次声明 覆盖
+
+        for (var i = 0; i &lt; 10; i++) &#123;
+          setTimeout(function()&#123;
+            console.log(i);
+          &#125;)
+        &#125;
+        // 输出十个 10
+        for (let j = 0; j &lt; 10; j++) &#123;
+          setTimeout(function()&#123;
+            console.log(j);
+          &#125;)
+        &#125;
+        // 输出 0123456789
+    &#125;
+    解构赋值&#123;
+        解构赋值是对赋值运算符的一种扩展
+        是一种针对数组或对象进行的模式匹配，然后对其中的对象进行赋值
+        在代码书写上简洁易读，语意清晰明了，方便了复杂对象中的数据字段获取
+
+        数组-解构
+        let [a,b,c] = [1,2,3]
+        可嵌套
+        let [a,[b],c] = [1,[2],3]
+        可忽略
+        let [a,,c] = [1,2,3]
+        不完全解构
+        let [a= 1,b] = []  : 结果。a= 1, b = undefine
+        剩于运算符
+        let [a,...b] = [1,2,3,4,5] :  a = 1, b = [2,3,4,5]
+        字符串等
+        在数组的解构中，解构目标若为可遍历对象，皆可进行解构赋值 （可遍历对象--定义 对象实现 iterator接口的数据）
+        解构默认值
+        let [a = 2] = [undefined]; // a = 2
+        当解构模式有匹配结果，且匹配结果是 undefined 时，会触发默认值作为返回结果。
+        let [a = 3, b = a] = [];     // a = 3, b = 3
+        let [a = 3, b = a] = [1];    // a = 1, b = 1
+        let [a = 3, b = a] = [1, 2]; // a = 1, b = 2
+        a 与 b 匹配结果为 undefined ，触发默认值：a = 3; b = a =3
+        a 正常解构赋值，匹配结果：a = 1，b 匹配结果 undefined ，触发默认值：b = a =1
+        a 与 b 正常解构赋值，匹配结果：a = 1，b = 2
+
+        对象模型的解构（Object）
+        基本
+        let &#123; foo, bar &#125; = &#123; foo: &#39;aaa&#39;, bar: &#39;bbb&#39; &#125;;
+        // foo = &#39;aaa&#39;
+        // bar = &#39;bbb&#39;
+         
+        let &#123; baz : foo &#125; = &#123; baz : &#39;ddd&#39; &#125;;
+        // foo = &#39;ddd&#39;
+        可嵌套可忽略
+        let obj = &#123;p: [&#39;hello&#39;, &#123;y: &#39;world&#39;&#125;] &#125;;
+        let &#123;p: [x, &#123; y &#125;] &#125; = obj;
+        // x = &#39;hello&#39;
+        // y = &#39;world&#39;
+        let obj = &#123;p: [&#39;hello&#39;, &#123;y: &#39;world&#39;&#125;] &#125;;
+        let &#123;p: [x, &#123;  &#125;] &#125; = obj;
+        // x = &#39;hello&#39;
+        不完全解构
+        let obj = &#123;p: [&#123;y: &#39;world&#39;&#125;] &#125;;
+        let &#123;p: [&#123; y &#125;, x ] &#125; = obj;
+        // x = undefined
+        // y = &#39;world&#39;
+        剩余运算符
+        let &#123;a, b, ...rest&#125; = &#123;a: 10, b: 20, c: 30, d: 40&#125;;
+        // a = 10
+        // b = 20
+        // rest = &#123;c: 30, d: 40&#125;
+        解构默认值
+        let &#123;a = 10, b = 5&#125; = &#123;a: 3&#125;;
+        // a = 3; b = 5;
+        let &#123;a: aa = 10, b: bb = 5&#125; = &#123;a: 3&#125;;
+        // aa = 3; bb = 5;
+                &#125;
+
+        Symbol
+
+        Map set
+        Maps 和 Objects 的区别
+        一个 Object 的键只能是字符串或者 Symbols，但一个 Map 的键可以是任意值。
+        Map 中的键值是有序的（FIFO 原则），而添加到对象中的键则不是。
+        Map 的键值对个数可以从 size 属性获取，而 Object 的键值对个数只能手动计算。
+        Object 都有自己的原型，原型链上的键名有可能和你自己在对象上的设置的键名产生冲突。
+
+        proxy 与 reflect
+        proxy 可以对目标对象的读取，函数调用进行拦截 ，然后进行操作处理，他不直接操作目标对象，而是通过对象的代理对象进行操作，在进行操作时可以添加一些额外操作。
+        reflect 可以获取目标对象的行为
+
+
+
+
+    promise
+    async 
+    await
+&#125;
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/19/interview-cocos-creator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-opengl-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/19/opengl-1/">opengl-1</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/19/opengl-1/" class="archive-article-date">
+  	<time datetime="2021-03-19T03:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>OPenGl 渲染管线</p>
+<p>1 显示列表Display Lists</p>
+<p>任何数据，不管它所描述的是几何图形还是像素，都可以保存在显示列表(display list)中，供当前或以后使用。当然，我们也可以不把数据保存在显示列表中，而是立即对数据进行处理，这种模式也称为立即模式(immediate mode)。当一个显示列表被执行时，被保存的数据就从显示列表中取出，就像在立即模式下直接由应用程序所发送的那样。</p>
+<p>2求值器Evaluators</p>
+<p>所有的几何图元最终都要通过顶点来描述。参数化曲线和表面最初可能是通过控制点以及成为基函数(Basic function)的多项式函数进行描述的。求职器提供了一种方法。根据控制点计算表示表面的顶点。这种方法是一种多项式映射，它可以根据控制点产生表面法线、纹理坐标、颜色以及空间坐标。<br>3 基于顶点的操作Per-Vertex Operations</p>
+<p>对于顶点数据，接下来的一个步骤就是”基于顶点的操作”，就是把顶点变换为图元。有些类型的顶点数据(例如空间坐标)是通过一个4*4 的浮点矩阵进行变换的。空间坐标从3D世界的一个位置投影到屏幕上的一个位置。如果启用了高级特性，这个阶段将更为忙碌。如果使用了纹理，这个阶段还将生成并变换纹理坐标。如果启用了光照，就需要综合变换后的顶点，表面法线，光源位置，材料属性以及其他光照信息进行光照计算，产生最终的颜色值。<br>4 图元装配Primitive Assembly</p>
+<p>图元装配的一个主要内容就是剪裁，它的任务是消除位于半空间(half-space)之外的那部分几何图元，而这个半空间是由一个平面所定义的。点剪裁就是简单地接受或拒绝顶点，直线或多边形剪裁则可能需要添加额外的顶点，具体取决于直线或多边形是如何进行剪裁的。在有些情况下，接下来需要执行一个称为透视除法(perspective division)的步骤。它使远处的物体看起来比近处的物体更小一些。接下来所进行的是视口(viewport)和深度(z 坐标)操作。如果启用了剔除功能(culling)并且该图元是个多边形，那么它就有可能被剔除测试所拒绝。取决于多边形模式，多边形可能被画成点的形式或者直线的形式。这个阶段所产生的结果就是完整的几何图元，也就是根据相关的颜色，深度(有时还有纹理坐标值以及和光棚化处理有关的一些指导信息)进行了变换和剪裁的顶点。<br>5 像素操作Pixel Operations</p>
+<p>在 OpenGL 的渲染管线中，和单路径的几何数据相比，像素数据所经历的流程有所不同。首先，来自系统内存的一个数组中的像素进行解包，从某种格式(像素的原始格式可能有多种)解包为适当数量的数据成分。接着，这些数据被缩放、偏移，并根据一副像素图进 行处理。处理结果先进行截取，然后或者写入到纹理内存，或者发送到光棚化阶段。 如果像素数据时从帧缓冲区读取的，就对他们执行像素转换操作 (缩放、偏移、映射和截取)。然后，这些结果被包装为一种适当的格式，并返回到系统内存 的一个数组中。 OpenGL 有一种特殊的像素复制操作，可以把数据从帧缓冲区复制到帧缓冲区的其他位 置或纹理内存中。这样，在数据写入到纹理内存或者写回到帧缓冲区之前，只需要进行一道 像素转换就可以了。<br>6 纹理装配Texture Assembly</p>
+<p>OpenGL 应用程序可以在几何物体上应用纹理图像，使它们看上去更为逼真。如果需要使用多幅纹理图像，把它们放在纹理对象中是一种明智的做法。这样，就可以很方便地在他们之间进行切换。有些 OpenGL 实现拥有一些特殊的资源，可以加速纹理的处理。这种资源可能是专用的，高性能的纹理内存。如果确实拥有这种内存，纹理对象可能会优先进行处理，以控制这种有限和宝贵的资源的使用。<br>7 光棚化Rasterization</p>
+<p>光棚化就是把几何数据和像素数据转换为片断(fragment)的过程。每个片断方块对应用于帧缓冲区中的一个像素。把顶点连接起来形成直线或者计算填充多边形的内部像素时，需要考虑直线和多边形的点画模式，直线的宽度，点的大小，着色模型以及用于支持抗锯齿处理的覆盖计算。每个片断方块都将具有各自的颜色和深度值。<br>8 片断操作Fragment Operations</p>
+<p>在数据实际存储到帧缓冲区之前， 将要执行一系列的操作。这些操作可能会修改甚至丢弃这些片断。所有这些操作都可以被启用或禁用。第一个可能执行的操作时纹理处理。在纹理内存中为每个片断生成一个纹理单元(texel，也就是纹理元素)，并应用到这个片断上。接着可能进行的是雾计算，然后是剪裁测试，alpha测试，模板测试和深度缓冲区测试(深度缓冲区用于消除被隐藏的表面)。如果一个片断无法通过一个启用的测试，它的连续处理过程可能会被中断。随后，将要执行的可能是混合，抖动，逻辑操作以及根据一个位掩码的屏蔽操作。最后，经过完整处理的片断就被绘制到适当的缓冲区，最终成为一个像素并到达它的最终栖息地。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/19/opengl-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2d-collision-detection" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/18/2d-collision-detection/">2d-collision-detection</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/18/2d-collision-detection/" class="archive-article-date">
+  	<time datetime="2021-03-18T06:22:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2d。游戏中常用碰撞检测逻辑</p>
+<p>点 与 矩形 （无旋转的）</p>
+<p>判断 点的 x &gt; rect.x &amp;&amp; x &lt; (rect.x + width) &amp;&amp; y &gt; rect.y &amp;&amp; y &lt; (rect.y + height)</p>
+<p>点与圆</p>
+<p>判断 点到圆心的距离 math.sqrt(math.pow(x2-x1,2) + math.pow(y2-y1,2)) &lt; circle.r</p>
+<p>点与多边形</p>
+<p>凸多边形 </p>
+<p>面积法<br>#include<iostream><br>#include<cstdio></p>
+<p>using namespace std;</p>
+<p>const int maxn=110;</p>
+<p>struct point{<br>    double x,y;<br>};<br>point poly[maxn];<br>int n,q;</p>
+<p>double multi(point p1,point p2,point p0)<br>{<br>    return (p1.x-p0.x)<em>(p2.y-p0.y)-(p2.x-p0.x)</em>(p1.y-p0.y);<br>}</p>
+<p>bool isinside(point p)<br>{<br>    double pre,now;<br>    for(int i=0;i&lt;n;i++){<br>        now=multi(p,poly[i],poly[(i+1)%n]);<br>        if(i&gt;0){<br>            if(pre*now&lt;0){<br>                return 0;<br>            }<br>        }<br>        pre=now;<br>    }<br>    return true;<br>}</p>
+<p>int main()<br>{<br>    scanf(“%d%d”,&amp;n,&amp;q);<br>    for(int i=0;i&lt;n;i++){<br>        scanf(“%lf%lf”,&amp;poly[i].x,&amp;poly[i].y);<br>    }<br>    point p;<br>    for(int i=0;i&lt;q;i++){<br>        scanf(“%lf%lf”,&amp;p.x,&amp;p.y);<br>        if(isinside(p)){<br>            printf(“Yes\n”);<br>        }else{<br>            printf(“No\n”);<br>        }<br>    }<br>    return 0;</p>
+<p>————————————————<br>版权声明：本文为CSDN博主「肘子zhouzi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhouzi2018/article/details/81737178">https://blog.csdn.net/zhouzi2018/article/details/81737178</a><br>内角和</p>
+<p>射线法适用于任意多边形</p>
+<p>判断射线与线段是否相交</p>
+<p>可判断射线起点与线段端点链接的斜率是否 包含射线的斜率</p>
+<p>当射线与多边形的交点个数是奇数时，Q在多边形内，是偶数时，Q在多边形外。<br>排除一些特殊情况<br>1.射线与多边形的顶点相交，这是交点只能计算一个。<br>2.射线与多边形顶点的交点不应该被计算<br>3.射线与多边形的一条边重合，这条边应该被忽略</p>
+<p>#include<iostream><br>#include<cstdio></p>
+<p>using namespace std;</p>
+<p>const int maxn=110;<br>const double eps=1e-5;</p>
+<p>struct point{<br>    double x,y;<br>};<br>point poly[maxn];</p>
+<p>int n,q;</p>
+<p>bool onsegment(point pi,point pj,point Q)<br>{<br>    if((Q.x-pi.x)<em>(pj.y-pi.y)==(pj.x-pi.x)</em>(Q.y-pi.y)&amp;&amp;min(pi.x,pj.x)&lt;=Q.x&amp;&amp;Q.x&lt;=max(pi.x,pj.x)&amp;&amp;min(pi.y,pj.y)&lt;=Q.y&amp;&amp;Q.y&lt;=max(pi.y,pj.y)){<br>        return true;<br>    }else{<br>        return false;<br>    }<br>}</p>
+<p>bool insidepolygon(point p)<br>{<br>    int counter=0;<br>    double xinters;<br>    point p1,p2;<br>    p1=poly[0];<br>    for(int i=1;i&lt;=n;i++){<br>        p2=poly[i%n];<br>        if(onsegment(p1,p2,p)){<br>            return true;<br>        }<br>        if(p.y&gt;min(p1.y,p2.y)){<br>            if(p.y&lt;=max(p1.y,p2.y)){<br>                if(p.x&lt;=max(p1.x,p2.x)){<br>                    if(p1.y!=p2.y){<br>                        xinters=(p.y-p1.y)*(p2.x-p1.x)/(p2.y-p1.y)+p1.x;<br>                        if(p1.x==p2.x||p.x&lt;=xinters){<br>                            counter++;<br>                        }<br>                    }<br>                }<br>            }<br>        }<br>        p1=p2;<br>    }<br>    if(counter%2==0){<br>        return false;<br>    }<br>    return true;<br>}</p>
+<p>int main()<br>{<br>    point p;<br>    scanf(“%d%d”,&amp;n,&amp;q);<br>    for(int i=0;i&lt;n;i++){<br>        scanf(“%lf%lf”,&amp;poly[i].x,&amp;poly[i].y);<br>    }<br>    for(int i=0;i&lt;q;i++){<br>        scanf(“%lf%lf”,&amp;p.x,&amp;p.y);<br>        if(insidepolygon(p)){<br>            printf(“within\n”);<br>        }else{<br>            printf(“outside\n”);<br>        }<br>    }<br>    return 0;</p>
+<p>C代码例子</p>
+<p>// Globals which should be set before calling this function:<br>//<br>// int    polySides  =  how many cornersthe polygon has<br>// float  polyX[]    =  horizontalcoordinates of corners<br>// float  polyY[]    =  verticalcoordinates of corners<br>// float  x,y       =  point to be tested<br>//<br>// (Globals are used in this example for purposes of speed.  Change as<br>// desired.)<br>//<br>//  Thefunction will return YES if the point x,y is inside the polygon, or<br>//  NOif it is not.  If the point is exactly on the edge of the polygon,<br>// then the function may return YES or NO.<br>//<br>// Note that division by zero is avoided because the division is protected<br>//  bythe “if” clause which surrounds it.</p>
+<p>// 假设射线是水平的<br>bool pointInPolygon() {</p>
+<p>  int   i,j=polySides-1 ;<br>  bool  oddNodes=NO     ;</p>
+<p>  for (i=0;i&lt;polySides; i++) {<br>    if(polyY[i]&lt;y &amp;&amp; polyY[j]&gt;=y<br>    ||  polyY[j]&lt;y&amp;&amp; polyY[i]&gt;=y) {<br>      if(polyX[i]+(y-polyY[i])/(polyY[j]-polyY[i])*(polyX[j]-polyX[i])&lt;x) {<br>        oddNodes=!oddNodes;}}<br>    j=i;}</p>
+<p>  returnoddNodes; }</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/18/2d-collision-detection/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-xiangliangxuexi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -212,6 +1006,10 @@
 <p>凸多边形与凸多边形</p>
 <p>凸多边形是指在多边形中任意取两点，将两点连线，产生一条线段，如果线段完整的处在多边形内，那么就是凸多边形，如果线段有部分处于多边形外，就属于凹多边形。 这里先讨论凸多边形。</p>
 <p>凸多边形的碰撞判断方式是分离轴定理。 指的是将一个凸n边形取每条边的法向量，可以得到n条法向量，那么两个凸n边形就能得到2n条法向量，我们将两个图形投影到每条法向量上，在每条法向量上将得到两条线段，如果没条法向量上的线段都有重合部分，那么就认定凸多边形相互碰撞了。反之，则没有碰撞。</p>
+<p>a =（xa,ya）<br>b = (xb,yb)<br>c = (xc,yc)</p>
+<p>ab = ((xb-xa),(yb-ya))<br>bc = ((xc-xb),(yc-yb))</p>
+<p>(xb-xa)<em>(yc-yb) - (yb-ya)</em>(xc-xb) = 0</p>
+<p>三点共线</p>
 
       
 
@@ -460,183 +1258,10 @@
 
 
   
-    <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/15/my-first-blog/">my first blog</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/15/my-first-blog/" class="archive-article-date">
-  	<time datetime="2021-03-15T09:11:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>资源管理<br>    资源加载释放<br>    统一的加载load接口 方便资源的引用计数处理 </p>
-<pre><code>例子：
-资源加载器 - 负责资源的load --缓存加载过的资源 
-
-各个不同类型的资源加载管理者 不同类型资源的共公使用方法
-</code></pre>
-<p>UI管理<br>    分层<br>    创建<br>    管理ui队列or栈</p>
-<pre><code>ui队列 --多ui依次展示管理 
-
-ui栈 -- 单个模块产生的多级界面堆叠 &#123;
-
-&#125;
-</code></pre>
-<p>UI类设计 – 可使用继承加组合的思想<br>    共公部分可采用继承的思想统一接口</p>
-<pre><code>复用场景较多的ui元素可拆分为插件 
-
-base 公共方法 
-
-UI设计
-    表现不同但功能相似的UI 可以动态绑定脚本，可将一些使用频率较高的ui制作成通用prefab以供使用
-    
-
-重点：
-ui不负责数据的处理- 只做展示 
-ui的更新通过事件驱动 
-</code></pre>
-<p>SystemControl {<br>    控制模块与模块直接的通信<br>}</p>
-<p>功能模块化{<br>    模块与模块之间不要有耦合逻辑–方便模块迭代<br>}</p>
-<p>网络模块{<br>    socket</p>
-<pre><code>通信协议&#123;
-    json
-    messagePack
-    protoBuffer
-&#125;
-http
-</code></pre>
-<p>}</p>
-<p>目前前端比较流行和通用的框架<br>mvc - puremvc<br>{<br>    module<br>    viem<br>    control<br>}</p>
-<p>ecs  – 组合优于继承 适用于实体表现多样<br>{<br>    entity<br>    component<br>    system<br>}</p>
-<p>实际使用时，可采用俩个框架的结合体 继承与组合 都要注重模块，数据，ui直接的解耦，通用性功能的复用和功能的可扩展性 在合适的场景使用合适的方式</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/15/my-first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/15/hello-world/" class="archive-article-date">
-  	<time datetime="2021-03-15T08:12:12.081Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/15/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 

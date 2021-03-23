@@ -16,7 +16,7 @@
 <meta property="og:description" content="向量是由n个实数组成的一个n行1列（n1）或一个1行n列（1n）的有序数组； 向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对应位一一相乘之后求和的操作，点乘的结果是一个标量。 点乘公式(内积) 对于向量a和向量b： a &#x3D; [a1,a2,a3,a4….an]b &#x3D; [b1,b2,b3,b4….bn]">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-17T06:54:45.000Z">
-<meta property="article:modified_time" content="2021-03-17T08:54:30.709Z">
+<meta property="article:modified_time" content="2021-03-18T08:45:50.526Z">
 <meta property="article:author" content="alhp">
 <meta name="twitter:card" content="summary">
   
@@ -214,6 +214,10 @@
 <p>凸多边形与凸多边形</p>
 <p>凸多边形是指在多边形中任意取两点，将两点连线，产生一条线段，如果线段完整的处在多边形内，那么就是凸多边形，如果线段有部分处于多边形外，就属于凹多边形。 这里先讨论凸多边形。</p>
 <p>凸多边形的碰撞判断方式是分离轴定理。 指的是将一个凸n边形取每条边的法向量，可以得到n条法向量，那么两个凸n边形就能得到2n条法向量，我们将两个图形投影到每条法向量上，在每条法向量上将得到两条线段，如果没条法向量上的线段都有重合部分，那么就认定凸多边形相互碰撞了。反之，则没有碰撞。</p>
+<p>a =（xa,ya）<br>b = (xb,yb)<br>c = (xc,yc)</p>
+<p>ab = ((xb-xa),(yb-ya))<br>bc = ((xc-xb),(yc-yb))</p>
+<p>(xb-xa)<em>(yc-yb) - (yb-ya)</em>(xc-xb) = 0</p>
+<p>三点共线</p>
 
       
 
@@ -306,6 +310,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/03/18/2d-collision-detection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2d-collision-detection
+        
+      </div>
+    </a>
   
   
     <a href="/2021/03/17/creator-plugin/" id="article-nav-older" class="article-nav-link-wrap">
